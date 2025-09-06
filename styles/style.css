@@ -93,12 +93,151 @@
 
 #choose-parent {
   width: 103.125rem;
-  height: 54.625rem;
-  background-color: grey;
+  height: 58.625rem;
+  background-color: white;
   margin: auto;
   margin-top: 100px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; */
 }
 
+.choose-title {
+  font-size: 32px;
+  color: #1f2937;
+  margin: auto;
+  justify-self: center;
+}
+
+.choose-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  padding: 30px 25px;
+}
+
+.choose-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.choose-menu-title {
+  font-size: 20px;
+  color: black;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.choose-menu-item {
+  font-weight: 400;
+  width: 15.625rem;
+  height: 2.1875rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 8px;
+  transition: transform 0.1s ease-in-out;
+  /* background-color: #15803d; */
+}
+.choose-menu-item:hover {
+  background-color: #15803d;
+  color: white;
+  border-radius: 4px;
+  transform: scale(1.05);
+}
+
+.card-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.choose-card {
+  width: 21.4375rem;
+  height: 26.8125rem;
+  background-color: white;
+  border-radius: 8px;
+  padding-top: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.card-info {
+  width: 19.4375rem;
+  height: 120px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: left;
+  gap: 8px;
+  margin-top: -1.5625rem;
+}
+
+img.card-img {
+  width: 19.4375rem;
+  height: 11.625rem;
+  background-color: white;
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+}
+
+.card-title {
+  font-weight: 600;
+}
+.card-subtitle {
+  font-weight: 400;
+  font-size: 15px;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin: 0;
+  color: #4c545f;
+  padding: 0;
+}
+
+.choose-card-tags {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-tag {
+  background-color: #dcfce7;
+  display: inline-block;
+  text-align: center;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.card-price {
+  font-weight: 700;
+}
+.choose-card-tags {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-button {
+  width: 19.4375rem;
+  height: 2.6875rem;
+  background-color: #15803d;
+  border: none;
+  color: white;
+  transition: transform 0.1s ease-in-out;
+  border-radius: 20px;
+  margin-top: -15px;
+  outline: none;
+  font-size: 18px;
+}
+.card-button:hover {
+  transform: scale(1.05);
+}
+
+.cart-item-remove {
+  width: 9.5px;
+  height: 9.5px;
+}
 /* ----------------------- */
 /* <!-- About the Campaign --> */
 #about-parent {
@@ -133,6 +272,13 @@
   width: 33.125rem;
   height: 33.125rem;
   object-fit: cover;
+}
+
+li.about-insider {
+  list-style-type: disc;
+  list-style-position: outside;
+  /* margin: 0 0 0 50; */
+  margin-left: 25px;
 }
 
 /* ----------------------- */
