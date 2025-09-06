@@ -95,18 +95,44 @@
   width: 103.125rem;
   height: 54.625rem;
   background-color: grey;
+  margin: auto;
   margin-top: 100px;
-  justify-self: center;
 }
 
 /* ----------------------- */
-/* <!-- About --> */
+/* <!-- About the Campaign --> */
 #about-parent {
   width: 68.125rem;
   height: 38.125rem;
-  background-color: grey;
-  justify-self: center;
+  background-color: white;
+  justify-content: center;
+  gap: 40px;
+  margin: auto;
   margin-top: 100px;
+}
+
+.about-title {
+  font-size: 32px;
+  color: #1f2937;
+  justify-self: center;
+}
+
+.about-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+.about-text {
+  color: #49545d;
+  margin: auto;
+}
+
+#about-img {
+  width: 33.125rem;
+  height: 33.125rem;
+  object-fit: cover;
 }
 
 /* ----------------------- */
@@ -116,6 +142,51 @@
   height: 27.25rem;
   background-color: #cff0dc;
   margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+
+.impact-title {
+  color: #1f2937;
+  font-size: 32px;
+}
+
+.impact-cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.impact-card {
+  width: 32.25rem;
+  height: 9.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  gap: 10px;
+  transition: transform 0.1s ease-in-out;
+}
+
+.impact-card:hover {
+  transform: scale(1.05);
+}
+
+.impact-card-title {
+  font-size: 2rem;
+  color: #15803d;
+}
+
+.impact-card-subtitle {
+  font-size: 1rem;
+  color: #4c545f;
+  font-weight: 500;
 }
 
 /* ----------------------- */
@@ -124,6 +195,64 @@
   width: 100%;
   height: 36.9375rem;
   background-color: #166534;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.form-container {
+  width: 40.625rem;
+  height: 19.4375rem;
+  margin-top: 40px;
+  border-radius: 12px;
+  background-color: #15803d;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.input-name {
+  width: 35.625rem;
+  height: 3rem;
+  overflow: hidden;
+  border: none;
+  border-radius: 4px;
+}
+.input-name::placeholder {
+  font-family: Inter;
+  font-weight: 400;
+  padding-left: 8px;
+}
+
+.input-name:focus,
+.form-dropdown:focus {
+  outline: none;
+}
+
+.form-dropdown {
+  width: 35.625rem;
+  height: 3rem;
+  border-radius: 4px;
+  color: #1f2937;
+  padding: 0 30px 0 8px;
+}
+
+.form-btn {
+  width: 35.8rem;
+  height: 3rem;
+  gap: 20px;
+}
+.form-btn:hover {
+  transform: scale(1.05);
 }
 
 /* ----------------------- */
