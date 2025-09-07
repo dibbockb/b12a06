@@ -10,7 +10,8 @@
   transition: transform 0.1s ease-in-out;
 }
 .defaultbtn:hover {
-  transform: scale(1.1);
+  /* transform: scale(1.1); */
+  background-color: goldenrod;
 }
 
 /* ----------------------- */
@@ -89,11 +90,11 @@
 }
 
 /* ----------------------- */
-/* <!-- Choose your Trees --> */
+/* <!-- Choose Trees --> */
 
 #choose-parent {
   width: 103.125rem;
-  height: 58.625rem;
+  /* height: 58.625rem; */
   background-color: white;
   margin: auto;
   margin-top: 100px;
@@ -115,6 +116,7 @@
   justify-content: space-around;
   align-items: start;
   padding: 30px 25px;
+  gap: 35px;
 }
 
 .category-menu {
@@ -129,7 +131,8 @@
   margin-bottom: 25px;
 }
 
-.category-item {
+.category-item,
+.all-trees {
   font-weight: 400;
   font-size: 16px;
   width: 15.625rem;
@@ -143,6 +146,14 @@
   border: none;
   /* background-color: #15803d; */
 }
+
+.active-category {
+  background-color: #15803d !important;
+  color: #fff !important;
+  transform: scale(1.05);
+  border-radius: 4px;
+}
+
 .category-item:hover {
   background-color: #15803d;
   color: white;
@@ -152,8 +163,9 @@
 
 .card-gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+  width: 100%;
 }
 
 .choose-card {
@@ -161,7 +173,11 @@
   height: 26.8125rem;
   border-radius: 8px;
   padding-top: 10px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-sizing: border-box;
   place-items: bottom;
 }
 
@@ -180,7 +196,7 @@
 img.card-img {
   width: 311px;
   height: 186px;
-  background-color: tomato;
+  background-color: rgba(153, 205, 50, 0.384);
   border-radius: 1rem 1rem 0rem 0rem;
   object-fit: cover;
 }
