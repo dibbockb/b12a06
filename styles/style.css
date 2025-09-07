@@ -112,35 +112,38 @@
 
 .choose-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: start;
   padding: 30px 25px;
 }
 
-.choose-menu {
+.category-menu {
   display: flex;
   flex-direction: column;
 }
 
-.choose-menu-title {
+.category-title {
   font-size: 20px;
   color: black;
   font-weight: 700;
   margin-bottom: 25px;
 }
 
-.choose-menu-item {
+.category-item {
   font-weight: 400;
+  font-size: 16px;
   width: 15.625rem;
   height: 2.1875rem;
   display: flex;
   justify-content: start;
   align-items: center;
   padding-left: 8px;
-  transition: transform 0.1s ease-in-out;
+  transition: transform 0.1s ease-in;
+  outline: none;
+  border: none;
   /* background-color: #15803d; */
 }
-.choose-menu-item:hover {
+.category-item:hover {
   background-color: #15803d;
   color: white;
   border-radius: 4px;
@@ -156,33 +159,34 @@
 .choose-card {
   width: 21.4375rem;
   height: 26.8125rem;
-  background-color: white;
   border-radius: 8px;
   padding-top: 10px;
   display: grid;
-  place-items: center;
+  place-items: bottom;
 }
 
 .card-info {
   width: 19.4375rem;
-  height: 120px;
+  height: 12.5rem;
   background-color: white;
   display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: left;
   gap: 8px;
-  margin-top: -1.5625rem;
+  margin-top: -0.5625rem;
 }
 
 img.card-img {
-  width: 19.4375rem;
-  height: 11.625rem;
-  background-color: white;
-  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  width: 311px;
+  height: 186px;
+  background-color: tomato;
+  border-radius: 1rem 1rem 0rem 0rem;
+  object-fit: cover;
 }
 
 .card-title {
+  margin-top: 25px;
   font-weight: 600;
 }
 .card-subtitle {
@@ -198,7 +202,7 @@ img.card-img {
 
 .choose-card-tags {
   display: flex;
-  justify-content: center;
+  justify-content: bottom;
   align-items: center;
 }
 
@@ -226,7 +230,7 @@ img.card-img {
   color: white;
   transition: transform 0.1s ease-in-out;
   border-radius: 20px;
-  margin-top: -15px;
+  /* margin-top: -15px; */
   outline: none;
   font-size: 18px;
 }
@@ -234,10 +238,32 @@ img.card-img {
   transform: scale(1.05);
 }
 
+.cart-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 12.5rem;
+}
+.cart-item-text {
+  display: flex;
+  flex-direction: column;
+}
+
 .cart-item-remove {
   width: 9.5px;
   height: 9.5px;
+  transition: transform 0.1s ease-in-out;
 }
+.cart-item-remove:hover {
+  transform: scale(1.8);
+  border-radius: 50%;
+}
+
+.cart-total {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 /* ----------------------- */
 /* <!-- About the Campaign --> */
 #about-parent {
