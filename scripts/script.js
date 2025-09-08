@@ -1,14 +1,15 @@
-// APIs
+// Api
 const allPlantsAPI = "https://openapi.programming-hero.com/api/plants";
 const categoriesAPI = "https://openapi.programming-hero.com/api/categories";
-const plantCategoryAPI = "https://openapi.programming-hero.com/api/category/1";
-const plantDetailAPI = "https://openapi.programming-hero.com/api/plant/1";
 
-// ---------------
-// Category
 const cardGallery = document.getElementsByClassName("card-gallery")[0];
 const categoryMenu = document.querySelector(".category-menu");
+const cartItemsContainer = document.querySelector(".cart-items");
+const cartTotalElement = document.querySelector(".cart-total");
+let cart = [];
 
+
+// Fetch Categories
 fetch(categoriesAPI)
   .then((response) => response.json())
   .then((data) => {
@@ -32,26 +33,22 @@ fetch(categoriesAPI)
         Array.from(categoryItems).forEach((btn) =>
           btn.classList.remove("active-category")
         );
-
-        // self.classList.add("active-category");
         this.classList.add("active-category");
         const categoryId = this.dataset.id;
-        console.log("Clicked categoryId:", categoryId);
         const categoryUrl = `https://openapi.programming-hero.com/api/category/${categoryId}`;
+        cardGallery.innerHTML = '<div class="loader"></div>';
         fetch(categoryUrl)
           .then((response) => response.json())
           .then((data) => {
-            console.log("Category API response:", data);
             cardGallery.innerHTML = "";
             const plants = Array.isArray(data.plants) ? data.plants : [];
             if (plants.length === 0) {
-              cardGallery.innerHTML =
-                "<p>No plants found for this category.</p>";
+              cardGallery.innerHTML = "<p>No plants found for this category.</p>";
               return;
             }
             plants.forEach((plant) => {
               const card = document.createElement("div");
-              card.classList.add("card");
+              card.classList.add("choose-card");
 
               const cardImg = document.createElement("img");
               cardImg.classList.add("card-img");
@@ -82,30 +79,32 @@ fetch(categoriesAPI)
               const cardButton = document.createElement("button");
               cardButton.classList.add("card-button");
               cardButton.innerText = "Add to Cart";
+              cardButton.onclick = function (e) {
+                e.stopPropagation();
+                addToCart(plant);
+              };
+
+              card.append(cardImg, cardInfo, cardTagDiv, cardButton);
+              cardInfo.append(cardTitle, cardSubtitle);
+              cardTagDiv.append(cardTag, cardPrice);
 
               cardGallery.appendChild(card);
-
-              card.append(cardImg, cardInfo, cardButton);
-              cardInfo.append(cardTitle, cardSubtitle, cardTagDiv);
-              cardTagDiv.append(cardTag, cardPrice);
             });
           });
       });
     });
   });
 
-// Cards
 
+// Fetch and Update Cards
+cardGallery.innerHTML = '<div class="loader"></div>';
 fetch(allPlantsAPI)
   .then((response) => response.json())
   .then((data) => {
-    // cardGallery.innerHTML = "<p>Loading...</p>";
     cardGallery.innerHTML = "";
-
-    // data.plants.slice(0, 6).forEach((plant) => {
     data.plants.forEach((plant) => {
       const card = document.createElement("div");
-      card.classList.add("card");
+      card.classList.add("choose-card");
 
       const cardImg = document.createElement("img");
       cardImg.classList.add("card-img");
@@ -131,29 +130,75 @@ fetch(allPlantsAPI)
 
       const cardPrice = document.createElement("div");
       cardPrice.classList.add("card-price");
-      const priceTaka = plant.price;
-      cardPrice.innerText = `৳${priceTaka}`;
+      cardPrice.innerText = `৳${plant.price}`;
 
       const cardButton = document.createElement("button");
       cardButton.classList.add("card-button");
       cardButton.innerText = "Add to Cart";
+      cardButton.onclick = function (e) {
+        e.stopPropagation();
+        addToCart(plant);
+      };
 
-      // cardGallery.append(card);
-      cardGallery.appendChild(card);
-
-      card.append(cardImg, cardInfo, cardButton);
-      cardInfo.append(cardTitle, cardSubtitle, cardTagDiv);
+      card.append(cardImg, cardInfo, cardTagDiv, cardButton);
+      cardInfo.append(cardTitle, cardSubtitle);
       cardTagDiv.append(cardTag, cardPrice);
+
+      cardGallery.appendChild(card);
     });
   });
 
-// Add to cart
-const addToCartButtons = document.getElementsByClassName("card-button");
-const cartItemTitle = document.getElementsByClassName("cart-item-title");
-console.log(cartItemTitle.innerText);
 
-Array.from(addToCartButtons).forEach((button) => {
-  button.addEventListener("click", function () {
-    console.log("button clicked");
+
+
+
+// ------------------------------------------
+// Card Modal
+
+
+
+// ------------------------------------------
+// Add to cart
+function updateCart() {
+  cartItemsContainer.innerHTML = "";
+  let total = 0;
+  cart.forEach((item, idx) => {
+    const itemDiv = document.createElement("div");
+    itemDiv.classList.add("cart-item-text");
+    const nameP = document.createElement("p");
+    nameP.classList.add("cart-item-title");
+    nameP.textContent = item.name;
+    const priceP = document.createElement("p");
+    priceP.classList.add("cart-item-price");
+    priceP.textContent = `৳${item.price}`;
+    itemDiv.appendChild(nameP);
+    itemDiv.appendChild(priceP);
+
+    const removeBtn = document.createElement("img");
+    removeBtn.classList.add("cart-item-remove");
+    removeBtn.src = "assets/cart-item-cross.png";
+    removeBtn.alt = "Remove";
+    removeBtn.style.display = "block";
+    removeBtn.style.cursor = "pointer";
+    removeBtn.onclick = function () {
+      cart.splice(idx, 1);
+      updateCart();
+    };
+
+    const wrapper = document.createElement("div");
+    wrapper.style.display = "flex";
+    wrapper.style.justifyContent = "space-between";
+    wrapper.style.alignItems = "center";
+    wrapper.appendChild(itemDiv);
+    wrapper.appendChild(removeBtn);
+
+    cartItemsContainer.appendChild(wrapper);
+    total += item.price;
   });
-});
+  cartTotalElement.textContent = `Total : ৳${total}`;
+}
+
+function addToCart(plant) {
+  cart.push(plant);
+  updateCart();
+}

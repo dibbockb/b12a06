@@ -10,6 +10,7 @@
   transition: transform 0.1s ease-in-out;
 }
 .defaultbtn:hover {
+  /* transform: scale(1.1); */
   background-color: goldenrod;
 }
 
@@ -93,9 +94,14 @@
 
 #choose-parent {
   width: 103.125rem;
+  /* height: 58.625rem; */
   background-color: white;
   margin: auto;
   margin-top: 100px;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto; */
 }
 
 .choose-title {
@@ -140,6 +146,7 @@
   transition: transform 0.1s ease-in;
   outline: none;
   border: none;
+  /* background-color: #15803d; */
 }
 
 .active-category {
@@ -252,10 +259,9 @@ img.card-img {
 
 .cart-items {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
   width: 12.5rem;
-  gap: 20px;
 }
 .cart-item-text {
   display: flex;
@@ -263,17 +269,12 @@ img.card-img {
 }
 
 .cart-item-remove {
-  width: 18px;
-  height: 18px;
-  display: flex;
-  margin-left: 25px;
-  align-self: center;
+  width: 9.5px;
+  height: 9.5px;
   transition: transform 0.1s ease-in-out;
-  display: none;
 }
-
 .cart-item-remove:hover {
-  transform: scale(1.5);
+  transform: scale(1.8);
   border-radius: 50%;
 }
 
@@ -323,6 +324,7 @@ img.card-img {
 li.about-insider {
   list-style-type: disc;
   list-style-position: outside;
+  /* margin: 0 0 0 50; */
   margin-left: 25px;
 }
 
@@ -416,6 +418,7 @@ li.about-insider {
 .input-name {
   width: 35.625rem;
   height: 3rem;
+  /* overflow: hidden; */
   border: none;
   border-radius: 4px;
   background-color: white;
@@ -463,37 +466,3 @@ li.about-insider {
 
 
 /* plant popup */
-
-
-
-
-
-/*imported loader spinner */
-
-.loader {
-  width: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 8px solid #514b82;
-  animation:
-    l20-1 0.8s infinite linear alternate,
-    l20-2 1.6s infinite linear;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-@keyframes l20-1{
-   0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
-   12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
-   25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
-   50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-   62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-   75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
-   100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
-}
-@keyframes l20-2{ 
-  0%    {transform:scaleY(1)  rotate(0deg)}
-  49.99%{transform:scaleY(1)  rotate(135deg)}
-  50%   {transform:scaleY(-1) rotate(0deg)}
-  100%  {transform:scaleY(-1) rotate(-135deg)}
-}
