@@ -10,7 +10,7 @@
   transition: transform 0.1s ease-in-out;
 }
 .defaultbtn:hover {
-  background-color: goldenrod;
+  transform: scale(1.05);
 }
 
 /* ----------------------- */
@@ -104,7 +104,6 @@
   margin: auto;
   justify-self: center;
   font-weight: 600;
-
 }
 
 .choose-container {
@@ -247,7 +246,8 @@ img.card-img {
   font-size: 18px;
 }
 .card-button:hover {
-  transform: scale(1.05);
+  transform: scale(1.03);
+  background-color: #0d4722;
 }
 
 .cart-items {
@@ -299,7 +299,6 @@ img.card-img {
   color: #1f2937;
   justify-self: center;
   font-weight: 600;
-
 }
 
 .about-content {
@@ -461,12 +460,113 @@ li.about-insider {
   align-items: center;
 }
 
+/* ----------------------- */
+/* <!-- Modal --> */
+.modalContainer {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none;
+}
 
-/* plant popup */
+.modalContainer.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
 
+.modalContainer-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 25px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  max-height: 95vh;
+  overflow-y: auto;
+}
 
+.modalContainer.is-active .modalContainer-content {
+  transform: translateY(0);
+  opacity: 1;
+}
 
+.modalContainer-close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease-in-out;
+}
 
+.modalContainer-close:hover,
+.modalContainer-close:focus {
+  color: #333;
+  text-decoration: none;
+}
+
+.modalContainer-content h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.8em;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.modalContainer-content img {
+  height: 500px;
+  display: block;
+  margin: 15px auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  object-fit: fill;
+}
+
+.modalContainer-content p {
+  line-height: 1.5;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.modalContainer-content strong {
+  color: #333;
+  font-weight: 600;
+}
+
+.modalContainer-content .modal-price {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: green;
+  text-align: right;
+  margin-top: 20px;
+}
+
+.modalContainer-content .modal-tags {
+  font-style: bold;
+  color: green;
+  margin-top: 5px;
+}
 
 /*imported loader spinner */
 
@@ -475,25 +575,93 @@ li.about-insider {
   aspect-ratio: 1;
   border-radius: 50%;
   border: 8px solid #514b82;
-  animation:
-    l20-1 0.8s infinite linear alternate,
-    l20-2 1.6s infinite linear;
+  animation: l20-1 0.8s infinite linear alternate, l20-2 1.6s infinite linear;
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-@keyframes l20-1{
-   0%    {clip-path: polygon(50% 50%,0       0,  50%   0%,  50%    0%, 50%    0%, 50%    0%, 50%    0% )}
-   12.5% {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100%   0%, 100%   0%, 100%   0% )}
-   25%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 100% 100%, 100% 100% )}
-   50%   {clip-path: polygon(50% 50%,0       0,  50%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-   62.5% {clip-path: polygon(50% 50%,100%    0, 100%   0%,  100%   0%, 100% 100%, 50%  100%, 0%   100% )}
-   75%   {clip-path: polygon(50% 50%,100% 100%, 100% 100%,  100% 100%, 100% 100%, 50%  100%, 0%   100% )}
-   100%  {clip-path: polygon(50% 50%,50%  100%,  50% 100%,   50% 100%,  50% 100%, 50%  100%, 0%   100% )}
+@keyframes l20-1 {
+  0% {
+    clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%);
+  }
+  12.5% {
+    clip-path: polygon(
+      50% 50%,
+      0 0,
+      50% 0%,
+      100% 0%,
+      100% 0%,
+      100% 0%,
+      100% 0%
+    );
+  }
+  25% {
+    clip-path: polygon(
+      50% 50%,
+      0 0,
+      50% 0%,
+      100% 0%,
+      100% 100%,
+      100% 100%,
+      100% 100%
+    );
+  }
+  50% {
+    clip-path: polygon(
+      50% 50%,
+      0 0,
+      50% 0%,
+      100% 0%,
+      100% 100%,
+      50% 100%,
+      0% 100%
+    );
+  }
+  62.5% {
+    clip-path: polygon(
+      50% 50%,
+      100% 0,
+      100% 0%,
+      100% 0%,
+      100% 100%,
+      50% 100%,
+      0% 100%
+    );
+  }
+  75% {
+    clip-path: polygon(
+      50% 50%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      100% 100%,
+      50% 100%,
+      0% 100%
+    );
+  }
+  100% {
+    clip-path: polygon(
+      50% 50%,
+      50% 100%,
+      50% 100%,
+      50% 100%,
+      50% 100%,
+      50% 100%,
+      0% 100%
+    );
+  }
 }
-@keyframes l20-2{ 
-  0%    {transform:scaleY(1)  rotate(0deg)}
-  49.99%{transform:scaleY(1)  rotate(135deg)}
-  50%   {transform:scaleY(-1) rotate(0deg)}
-  100%  {transform:scaleY(-1) rotate(-135deg)}
+@keyframes l20-2 {
+  0% {
+    transform: scaleY(1) rotate(0deg);
+  }
+  49.99% {
+    transform: scaleY(1) rotate(135deg);
+  }
+  50% {
+    transform: scaleY(-1) rotate(0deg);
+  }
+  100% {
+    transform: scaleY(-1) rotate(-135deg);
+  }
 }

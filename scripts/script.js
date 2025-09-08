@@ -8,7 +8,6 @@ const cartItemsContainer = document.querySelector(".cart-items");
 const cartTotalElement = document.querySelector(".cart-total");
 let cart = [];
 
-
 // Fetch Categories
 fetch(categoriesAPI)
   .then((response) => response.json())
@@ -43,7 +42,8 @@ fetch(categoriesAPI)
             cardGallery.innerHTML = "";
             const plants = Array.isArray(data.plants) ? data.plants : [];
             if (plants.length === 0) {
-              cardGallery.innerHTML = "<p>No plants found for this category.</p>";
+              cardGallery.innerHTML =
+                "<p>No plants found for this category.</p>";
               return;
             }
             plants.forEach((plant) => {
@@ -94,7 +94,6 @@ fetch(categoriesAPI)
       });
     });
   });
-
 
 // Fetch and Update Cards
 cardGallery.innerHTML = '<div class="loader"></div>';
@@ -148,15 +147,6 @@ fetch(allPlantsAPI)
     });
   });
 
-
-
-
-
-// ------------------------------------------
-// Card Modal
-
-
-
 // ------------------------------------------
 // Add to cart
 function updateCart() {
@@ -202,3 +192,71 @@ function addToCart(plant) {
   cart.push(plant);
   updateCart();
 }
+
+// ------------------------------------------
+// Card Modal
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.createElement("div");
+  modal.classList.add("modalContainer");
+  modal.style.display = "none";
+
+  const modalContent = document.createElement("div");
+  modalContent.classList.add("modalContainer-content");
+
+  const closeButton = document.createElement("span");
+  closeButton.innerHTML = "";
+  closeButton.classList.add("modalContainer-close");
+
+  const closeModal = () => {
+    modal.classList.remove("is-active");
+    setTimeout(() => (modal.style.display = "none"), 100);
+  };
+
+  closeButton.addEventListener("click", (fff) => {
+    // console.log("close button clicked");
+    fff.stopPropagation();
+    closeModal();
+  });
+
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
+  modalContent.appendChild(closeButton);
+
+  document.body.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      closeModal();
+      return;
+    }
+
+    const card = e.target.closest(".choose-card");
+    if (!card) return;
+
+    const imgSrc = card.querySelector(".card-img")?.src;
+    const title = card.querySelector(".card-title")?.textContent;
+    const subtitle = card.querySelector(".card-subtitle")?.textContent;
+    const tags = Array.from(card.querySelectorAll(".card-tag"))
+      .map((tag) => tag.textContent)
+      .join(", ");
+    const price = card.querySelector(".card-price")?.textContent;
+
+    modalContent.innerHTML = `
+      <span class="modalContainer-close">&times;</span>
+      <h2>${title}</h2>
+      ${imgSrc ? `<img src="${imgSrc}" alt="${title}">` : ""}
+      <p><strong>Description:</strong> ${subtitle}</p>
+      <p class="modal-tags"><strong>Tag:</strong> ${tags}</p>
+      <p class="modal-price">${price}</p>
+    `;
+
+    modalContent
+      .querySelector(".modalContainer-close")
+      .addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeModal();
+      });
+
+    modal.style.display = "flex";
+    setTimeout(() => modal.classList.add("is-active"), 10);
+  });
+});
