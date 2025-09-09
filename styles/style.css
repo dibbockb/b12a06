@@ -176,7 +176,7 @@
 
 .card-info {
   width: 19.4375rem;
-  height: 12.5rem;
+  height: 11.5rem;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -366,7 +366,14 @@ li.about-insider {
 }
 
 .impact-card:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
+  background-color: #15803cc4;
+  color: white;
+
+  .impact-card-title,
+  .impact-card-subtitle {
+    color: white;
+  }
 }
 
 .impact-card-title {
@@ -421,8 +428,8 @@ li.about-insider {
 }
 .input-name::placeholder {
   font-family: Inter;
-  font-weight: 400;
-  padding-left: 8px;
+  font-weight: 500;
+  padding-left: 10px;
 }
 
 .input-name:focus,
@@ -547,6 +554,14 @@ li.about-insider {
   line-height: 1.5;
   color: #555;
   margin-bottom: 10px;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  object-fit: fill;
 }
 
 .modalContainer-content strong {

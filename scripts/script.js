@@ -243,7 +243,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modalContent.innerHTML = `
       <span class="modalContainer-close">&times;</span>
       <h2>${title}</h2>
-      ${imgSrc ? `<img src="${imgSrc}" alt="${title}">` : ""}
+      ${imgSrc ? `<img class="modalImage" src="${imgSrc}" alt="${title}">` : ""}
       <p><strong>Description:</strong> ${subtitle}</p>
       <p class="modal-tags"><strong>Tag:</strong> ${tags}</p>
       <p class="modal-price">${price}</p>
